@@ -24,7 +24,7 @@ const router = new VueRouter({
                 title: '轨迹预测方法研究原型系统V1.0',
             },
             component: () => import('@/views/main/index.vue')
-        }
+        },
     ]
 })
 
