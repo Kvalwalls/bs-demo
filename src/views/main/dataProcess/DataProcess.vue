@@ -5,7 +5,7 @@
         v-if="loading"
         text="数据处理中"
     />
-    <template>
+    <template v-if="!loading">
       <div class="process-main">
         <div class="video-container">
           <div class="old-video">
@@ -24,6 +24,11 @@
                 :src="processVideo"
                 class="avatar"
                 controls="controls"
+            />
+            <LoadingComponent
+                style="margin-top: 20px"
+                v-else
+                text="视频获取中"
             />
           </div>
         </div>
@@ -261,6 +266,7 @@ export default {
             .then((response) => response.json()).then((res) => {
           console.log('table res', res)
           this.processTable = res || [];
+          this.loading = false;
           this.min = Math.min(...(res || []).map((item) => item.frame_id))
           this.max = Math.max(...(res || []).map((item) => item.frame_id))
         })

@@ -30,7 +30,6 @@
         this.activeName = name;
       }
     }
-
   }
 </script>
 <style scoped>
