@@ -19,9 +19,20 @@
           </div>
           <div class="new-video">
             <h4>新视频名称: {{ processVideoInfo?.output_video_pathname || '--' }}</h4>
+<!--            <video-->
+<!--                v-show="processVideo"-->
+<!--                class="avatar"-->
+<!--                controls="controls"-->
+<!--            />-->
+<!--            <video-player ref="videoPlayer" :options="playerOptions"></video-player>-->
+<!--            <vue-media-player-->
+<!--                 :ref="mediaPlayerRef"-->
+<!--                 :source="mediaSource"-->
+<!--                 :options="playerOptions"-->
+<!--            ></vue-media-player>-->
             <video
-                v-if="processVideo"
-                :src="processVideo"
+                v-if="$store.state.videoInfo?.url"
+                :src="$store.state.videoInfo?.url"
                 class="avatar"
                 controls="controls"
             />
@@ -122,10 +133,13 @@
 
 <script>
 import LoadingComponent from "@/components/LoadingComponent.vue";
-
+// import VueMediaPlayer from 'vue-media-player';
 export default {
   name: "DataProcess",
-  components: {LoadingComponent},
+  components: {
+    LoadingComponent,
+    // VueMediaPlayer
+  },
   data() {
     return {
       algorithmList: [],
@@ -133,6 +147,12 @@ export default {
       processVideo: undefined,
       processTable: [],
       loading: true,
+      mediaSource: '',
+      mediaPlayerRef: 'mediaPlayer',
+      playerOptions: {
+        autoplay: false,
+        controls: true
+      },
       form: {
         model_name: undefined,
         frame_id: undefined,
@@ -219,6 +239,11 @@ export default {
     //   })
     // }
   },
+  computed: {
+    player() {
+      return this.$refs.videoPlayer.player
+    }
+  },
   methods: {
     handleNextStep() {
       this.$refs['form'].validate((valid) => {
@@ -253,10 +278,13 @@ export default {
         fetch(`http://e83tzp.natappfree.cc/api/v1/bs/process/video?output_video_pathname=${this.processVideoInfo.output_video_pathname}`)
             .then((response) => response.blob()).then(async (blob) => {
           console.log('video blob', blob)
-          const url = window.URL.createObjectURL(blob);
-          console.log('url', url);
-          this.processVideo = url;
           this.loading = false;
+          if (blob) {
+            const mockBlobData = new Blob([blob], { type: 'video/mp4' });
+            const url = URL.createObjectURL(mockBlobData);
+            this.processVideo = url;
+            this.mediaSource = url;
+          }
         })
       }
     },
