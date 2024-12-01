@@ -8,12 +8,9 @@ export default new Vuex.Store({
         // 上传接口返回结果
         uploadVideoInfo: undefined,
         //   原来的视频信息
-        videoInfo: undefined
-    },
-    getters: {
-        // getToken(state) {
-        //     return state.token
-        // },
+        videoInfo: undefined,
+        //   预测表单
+        predictForm: undefined,
     },
     mutations: {
         setUploadVideoInfo(state, data) {
@@ -21,6 +18,9 @@ export default new Vuex.Store({
         },
         setVideoInfo(state, data) {
             state.videoInfo = data
+        },
+        setPredictForm(state, data) {
+            state.predictForm = data
         },
     },
     actions: {},

@@ -4,8 +4,8 @@
       v-if="flag === 'done'"
       class="video-info"
     >
-      <span>视频名称：{{ $store.state.uploadVideoInfo?.output_filename }}</span>
-      <span>视频帧率：{{ $store.state.uploadVideoInfo?.frame_rate }}</span>
+      <h4>视频名称：{{ $store.state.uploadVideoInfo?.output_filename }}</h4>
+      <h4>视频帧率：{{ $store.state.uploadVideoInfo?.frame_rate }}</h4>
     </div>
     <el-upload
       v-if="!flag"
@@ -15,13 +15,14 @@
       :on-success="handleUploadSuccess"
       :on-change="beforeVideoUpload"
       accept=".mp4,.video,.flv,.rmvb,.avi,.mov,.wmv,.mkv,.webm,.mpg,.mpeg,.asf,.rm,"
-      action="http://zvjpi5.natappfree.cc/api/v1/bs/upload"
+      action="http://e83tzp.natappfree.cc/api/v1/bs/upload"
     >
       <i class="el-icon-upload"></i>
       <div class="el-upload__text">将视频拖到此处，或<em>点击上传</em></div>
     </el-upload>
     <LoadingComponent
       v-if="flag === 'loading'"
+      style="margin-top: 150px"
       text="视频上传中"
     />
     <video
@@ -78,7 +79,6 @@ export default {
     },
     handleUploadAgain() {
       this.flag = undefined
-      this.url = undefined
       this.$store.commit('setUploadVideoInfo', undefined)
       this.$store.commit('setVideoInfo', undefined)
     },
@@ -97,6 +97,13 @@ export default {
     display: flex;
     justify-content: space-around;
     margin-bottom: 5px;
+  }
+
+  .video-info {
+    h4 {
+      display: inline-block;
+      margin-right: 10px;
+    }
   }
 
   video {
