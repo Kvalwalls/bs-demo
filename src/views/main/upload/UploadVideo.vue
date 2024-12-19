@@ -15,7 +15,7 @@
       :on-success="handleUploadSuccess"
       :on-change="beforeVideoUpload"
       accept=".mp4,.video,.flv,.rmvb,.avi,.mov,.wmv,.mkv,.webm,.mpg,.mpeg,.asf,.rm,"
-      action="http://e83tzp.natappfree.cc/api/v1/bs/upload"
+      action="https://wbcbs.mynatapp.cc/api/v1/bs/upload"
     >
       <i class="el-icon-upload"></i>
       <div class="el-upload__text">将视频拖到此处，或<em>点击上传</em></div>

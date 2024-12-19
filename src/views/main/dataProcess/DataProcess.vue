@@ -32,7 +32,7 @@
 <!--            ></vue-media-player>-->
             <video
                 v-if="$store.state.videoInfo?.url"
-                :src="$store.state.videoInfo?.url"
+                src="../../../assets/video.mp4"
                 class="avatar"
                 controls="controls"
             />
@@ -216,12 +216,12 @@ export default {
     console.log('this.process', this.process)
     this.process();
     // if (this.$store.state.uploadVideoInfo?.output_filename) {
-    //   fetch(`http://e83tzp.natappfree.cc/api/v1/bs/process?video_filename=${this.$store.state.uploadVideoInfo.output_filename}`)
+    //   fetch(`https://wbcbs.mynatapp.cc/api/v1/bs/process?video_filename=${this.$store.state.uploadVideoInfo.output_filename}`)
     //       .then((response) => response.json()).then((res) => {
     //     console.log('process res', res)
     //     this.processVideoInfo = res;
     //     if (res.output_video_pathname) {
-    //       fetch(`http://e83tzp.natappfree.cc/api/v1/bs/process/video?output_video_pathname=${res.output_video_pathname}`)
+    //       fetch(`https://wbcbs.mynatapp.cc/api/v1/bs/process/video?output_video_pathname=${res.output_video_pathname}`)
     //           .then((response) => response.blob()).then(async (blob) => {
     //         console.log('video blob', blob)
     //         const url = window.URL.createObjectURL(blob);
@@ -230,7 +230,7 @@ export default {
     //       })
     //     }
     //     if (res.output_table_pathname) {
-    //       fetch(`http://e83tzp.natappfree.cc/api/v1/bs/process/table?output_table_pathname=${res.output_table_pathname}`)
+    //       fetch(`https://wbcbs.mynatapp.cc/api/v1/bs/process/table?output_table_pathname=${res.output_table_pathname}`)
     //           .then((response) => response.json()).then((res) => {
     //         console.log('table res', res)
     //         this.processTable = res || [];
@@ -264,7 +264,7 @@ export default {
     },
     process() {
       if (this.$store.state.uploadVideoInfo?.output_filename) {
-        fetch(`http://e83tzp.natappfree.cc/api/v1/bs/process?video_filename=${this.$store.state.uploadVideoInfo.output_filename}`)
+        fetch(`https://wbcbs.mynatapp.cc/api/v1/bs/process?video_filename=${this.$store.state.uploadVideoInfo.output_filename}`)
             .then((response) => response.json()).then((res) => {
           console.log('process res', res)
           this.processVideoInfo = res;
@@ -275,7 +275,7 @@ export default {
     },
     getProcessVideo() {
       if (this.processVideoInfo.output_video_pathname) {
-        fetch(`http://e83tzp.natappfree.cc/api/v1/bs/process/video?output_video_pathname=${this.processVideoInfo.output_video_pathname}`)
+        fetch(`https://wbcbs.mynatapp.cc/api/v1/bs/process/video?output_video_pathname=${this.processVideoInfo.output_video_pathname}`)
             .then((response) => response.blob()).then(async (blob) => {
           console.log('video blob', blob)
           this.loading = false;
@@ -290,7 +290,7 @@ export default {
     },
     getProcessTable() {
       if (this.processVideoInfo.output_table_pathname) {
-        fetch(`http://e83tzp.natappfree.cc/api/v1/bs/process/table?output_table_pathname=${this.processVideoInfo.output_table_pathname}`)
+        fetch(`https://wbcbs.mynatapp.cc/api/v1/bs/process/table?output_table_pathname=${this.processVideoInfo.output_table_pathname}`)
             .then((response) => response.json()).then((res) => {
           console.log('table res', res)
           this.processTable = res || [];
@@ -302,7 +302,7 @@ export default {
     },
     getAlgorithmList() {
       // 获取算法枚举数据
-      fetch('http://e83tzp.natappfree.cc/api/v1/bs/enum')
+      fetch('https://wbcbs.mynatapp.cc/api/v1/bs/enum')
           .then((response) => response.json()).then((res) => {
         console.log('enum res', res)
         this.algorithmList = res || [];

@@ -78,7 +78,7 @@ export default {
     predict() {
       if (this.$store.state.predictForm) {
         console.log('predict form', this.$store.state.predictForm)
-        fetch('http://e83tzp.natappfree.cc/api/v1/bs/predict',
+        fetch('https://wbcbs.mynatapp.cc/api/v1/bs/predict',
             {
               method: 'POST',
               body: JSON.stringify(this.$store.state.predictForm),
@@ -97,7 +97,7 @@ export default {
     },
     getPredictImage() {
       if (this.predictInfo.predict_image_pathname) {
-        fetch(`http://e83tzp.natappfree.cc/api/v1/bs/predict/image?predict_image_pathname=${this.predictInfo.predict_image_pathname}`)
+        fetch(`https://wbcbs.mynatapp.cc/api/v1/bs/predict/image?predict_image_pathname=${this.predictInfo.predict_image_pathname}`)
             .then((response) => response.blob()).then(async (blob) => {
           console.log('video blob', blob)
           const url = window.URL.createObjectURL(blob);
@@ -109,7 +109,7 @@ export default {
     },
     getPredictTable() {
       if (this.predictInfo.predict_table_pathname) {
-        fetch(`http://e83tzp.natappfree.cc/api/v1/bs/predict/table?predict_table_pathname=${this.predictInfo.predict_table_pathname}`)
+        fetch(`https://wbcbs.mynatapp.cc/api/v1/bs/predict/table?predict_table_pathname=${this.predictInfo.predict_table_pathname}`)
             .then((response) => response.json()).then((res) => {
           console.log('table res', res)
           this.predictTable = res || [];
@@ -118,7 +118,7 @@ export default {
     },
     getPredictFe() {
       if (this.predictInfo.predict_table_pathname) {
-        fetch(`http://e83tzp.natappfree.cc/api/v1/bs/predict/eval?predict_table_pathname=${this.predictInfo.predict_table_pathname}`)
+        fetch(`https://wbcbs.mynatapp.cc/api/v1/bs/predict/eval?predict_table_pathname=${this.predictInfo.predict_table_pathname}`)
             .then((response) => response.json()).then((res) => {
           console.log('table res', res)
           this.predictFe = res || [];
